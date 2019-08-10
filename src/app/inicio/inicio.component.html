@@ -1,19 +1,18 @@
 <header>
-
+  <div class=izquierda>
+    <h3>Intercorp <i class="fa fa-copyright"></i> Test</h3>
+  </div>
+  <div class="derecha">
+    <i class="fa fa-plus-circle" (click)="showModal()"></i>
+  </div>
 </header>
-
-
-<input type="text" [(ngModel)]="persona.nombre">
-<input type="text" [(ngModel)]="persona.apellido">
-<input type="text" [(ngModel)]="persona.edad">
-<input type="text" [(ngModel)]="persona.fecha">
 
 
 
 <h1>{{persona.fecha}}</h1>
 
 
-<div class="modal">
+<div class="modal off">
   <div class="fondo" (click)="closeModal()"></div>
   <div class="contenido">
     <mat-form-field>
@@ -31,7 +30,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <br>
-    <button mat-raised-button (click)="addPersona()">Basic</button>
+    <button mat-raised-button color="primary" (click)="addPersona()">Agregar <i class="fa fa-check"></i></button>
   </div>
 </div>
 

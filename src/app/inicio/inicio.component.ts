@@ -48,7 +48,8 @@ export class InicioComponent implements OnInit {
       registro: new Date()
     }).then(res => {
       this.getPersonas();
-      $('.modal').hide();
+      $('.modal').addClass('off');
+      this.persona = {};
     }).catch(err => {
       console.error(err);
     });
@@ -58,14 +59,17 @@ export class InicioComponent implements OnInit {
   delPersona = (id) => {
     this.db.collection('personas').doc(id).delete().then(res => {
       this.getPersonas();
-      $('.modal').hide();
+      $('.modal').addClass('off');
     }).catch(err => {
       console.error(err);
     });
   }
 
   closeModal() {
-    $('.modal').hide();
+    $('.modal').addClass('off');
+  }
+  showModal() {
+    $('.modal').removeClass('off');
   }
 
 }

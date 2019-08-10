@@ -1,7 +1,55 @@
+$mat-blue: (50: #e3f2fd,
+  100: #bbdefb,
+  200: #90caf9,
+  300: #64b5f6,
+  400: #42a5f5,
+  500: #2196f3,
+  600: #1e88e5,
+  700: #1976d2,
+  800: #1565c0,
+  900: #0d47a1,
+  A100: #82b1ff,
+  A200: #448aff,
+  A400: #2979ff,
+  A700: #2962ff,
+);
+
 header {
   width: 100%;
   height: 80px;
-  background: #3f51b5;
+  background: map_get($mat-blue, 600);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+  color: #fff;
+  font-size: 25px;
+
+  .izquierda,
+  .derecha {
+    display: inline-flex;
+
+    height: 100%;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .izquierda {
+    width: 80%;
+    i{
+      font-size: 18px;
+    }
+  }
+
+  .derecha {
+    width: 20%;
+    justify-content: flex-end;
+    i{
+      cursor: pointer;
+    }
+  }
+
+  h3 {
+    margin: 0px;
+  }
+
 }
 
 .modal {
@@ -14,9 +62,13 @@ header {
   display: flex;
   justify-content: center;
 
+  &.off {
+    display: none;
+  }
+
   .fondo {
     position: fixed;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.32);
     z-index: 3;
     width: 100%;
     height: 100%;
