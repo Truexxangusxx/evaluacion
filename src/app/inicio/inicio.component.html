@@ -1,0 +1,43 @@
+<header>
+
+</header>
+
+
+<input type="text" [(ngModel)]="persona.nombre">
+<input type="text" [(ngModel)]="persona.apellido">
+<input type="text" [(ngModel)]="persona.edad">
+<input type="text" [(ngModel)]="persona.fecha">
+
+
+
+<h1>{{persona.fecha}}</h1>
+
+
+<div class="modal">
+  <div class="fondo" (click)="closeModal()"></div>
+  <div class="contenido">
+    <mat-form-field>
+      <input matInput placeholder="Nombre" [(ngModel)]="persona.nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Apellido" [(ngModel)]="persona.apellido">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Edad" [(ngModel)]="persona.edad">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="persona.fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="addPersona()">Basic</button>
+  </div>
+</div>
+
+
+
+<ol>
+  <li *ngFor="let persona of  personas">{{persona.id}}---->{{persona.data().nombre}} -------- <button mat-raised-button
+      (click)="delPersona(persona.id)">eliminar</button> </li>
+</ol>
