@@ -17,6 +17,8 @@ export class InicioComponent implements OnInit {
   persona: any = {};
   promedio: number;
   desviacion: number;
+  tab1 = true;
+  tab2 = false;
 
   constructor(public db: AngularFirestore, private datePipe: DatePipe) {
     this.items = db.collection('personas').valueChanges();
@@ -87,6 +89,16 @@ export class InicioComponent implements OnInit {
   }
   showModal() {
     $('.modal').removeClass('off');
+  }
+
+  selectTab1 = () => {
+    this.tab1 = true;
+    this.tab2 = false;
+  }
+
+  selectTab2 = () => {
+    this.tab1 = false;
+    this.tab2 = true;
   }
 
 }

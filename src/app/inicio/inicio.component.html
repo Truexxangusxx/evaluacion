@@ -32,28 +32,68 @@
 
 <div class="contenedor">
 
-  <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
-  <h1> Desviacion estandar: <span>{{desviacion | number: '1.0-0'}}</span></h1>
+
+  <div class="tabs">
+    <div [ngClass]="tab1?'on':''" (click)="selectTab1()">
+      Lista de clientes
+    </div>
+    <div [ngClass]="tab2?'on':''" (click)="selectTab2()">
+      Proyeccion y analisis
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
 
 
-  <table>
-    <thead>
-      <th>No.</th>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Edad</th>
-      <th>Fecha Nacimiento</th>
-      <th><i class="fa fa-trash"></i></th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
-        <td>{{i+1}}</td>
-        <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
-        <td>{{persona.data().apellido}}</td>
-        <td>{{persona.data().edad}}</td>
-        <td>{{persona.data().fecha}}</td>
-        <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
-      </tr>
-    </tbody>
-  </table>
+  <div [ngClass]="tab1? 'tab on':'tab'">
+
+    <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
+    <h1> Desviacion estandar: <span>{{desviacion | number: '1.0-0'}}</span></h1>
+
+    <table>
+      <thead>
+        <th>No.</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Fecha Nacimiento</th>
+        <th><i class="fa fa-trash"></i></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
+          <td>{{i+1}}</td>
+          <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
+          <td>{{persona.data().apellido}}</td>
+          <td>{{persona.data().edad}}</td>
+          <td>{{persona.data().fecha}}</td>
+          <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div [ngClass]="tab2? 'tab on':'tab'">
+    <table>
+      <thead>
+        <th>No.</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Fecha Nacimiento</th>
+        <th><i class="fa fa-trash"></i></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
+          <td>{{i+1}}</td>
+          <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
+          <td>{{persona.data().apellido}}</td>
+          <td>{{persona.data().edad}}</td>
+          <td>{{persona.data().fecha}}</td>
+          <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

@@ -37,7 +37,8 @@ header {
 
   .izquierda {
     width: 80%;
-    i{
+
+    i {
       font-size: 18px;
     }
   }
@@ -45,7 +46,8 @@ header {
   .derecha {
     width: 20%;
     justify-content: flex-end;
-    i{
+
+    i {
       cursor: pointer;
     }
   }
@@ -92,60 +94,173 @@ header {
 }
 
 
-.contenedor{
+.contenedor {
   padding: 20px;
-  table{
+
+  @media (max-width: 600px) {
+    & {
+      padding: 20px 10px;
+    }
+  }
+
+  .tabs {
+    &>div {
+      color: #727272;
+      display: inline-block;
+      min-width: 300px;
+      font-size: 20px;
+      font-weight: 500;
+      border-bottom: 1px solid #727272;
+      cursor: pointer;
+      padding-left: 10px;
+
+      @media (max-width: 600px) {
+        & {
+          font-size: 16px;
+          min-width: fit-content;
+        }
+      }
+
+      &.on {
+        color: map_get($mat-blue, 900);
+        border-bottom: 1px solid map_get($mat-blue, 900);
+        font-weight: 700;
+      }
+    }
+  }
+
+  .tab {
+    display: none;
+    &.on{
+      display: block;
+    }
+  }
+
+  h1 {
+    color: #212121;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 5px 0px;
+
+    span {
+      background: map_get($mat-blue, 800);
+      color: #fff;
+      padding: 5px;
+      border-radius: 50%;
+    }
+  }
+
+  table {
+    margin-top: 20px;
     border-radius: 5px;
     border-collapse: collapse;
     width: 100%;
     border: 1px solid map_get($mat-blue, 800);
-    thead{
+
+    thead {
       background: map_get($mat-blue, 600);
-      color:#fff;
-      th{
+      color: #fff;
+
+      th {
         padding: 10px;
-        &:nth-child(1){ width: 5%; }
-        &:nth-child(2){ width: 30%; }
-        &:nth-child(3){ width: 30%; }
-        &:nth-child(4){ width: 10%; }
-        &:nth-child(5){ width: 20%; }
-        &:nth-child(6){ width: 5%; }
+
+        &:nth-child(1) {
+          width: 5%;
+        }
+
+        &:nth-child(2) {
+          width: 30%;
+        }
+
+        &:nth-child(3) {
+          width: 30%;
+        }
+
+        &:nth-child(4) {
+          width: 10%;
+        }
+
+        &:nth-child(5) {
+          width: 20%;
+        }
+
+        &:nth-child(6) {
+          width: 5%;
+        }
+
         @media (max-width: 600px) {
-          &:nth-child(1){ display: none; }
-          &:nth-child(2){ width: 30%; }
-          &:nth-child(3){ display: none; }
-          &:nth-child(4){ width: 10%; }
-          &:nth-child(5){ display: none; }
-          &:nth-child(6){ width: 5%; }
+          &:nth-child(1) {
+            display: none;
+          }
+
+          &:nth-child(2) {
+            width: 30%;
+          }
+
+          &:nth-child(3) {
+            display: none;
+          }
+
+          &:nth-child(4) {
+            width: 10%;
+          }
+
+          &:nth-child(5) {
+            display: none;
+          }
+
+          &:nth-child(6) {
+            width: 5%;
+          }
         }
       }
     }
-    tbody{
-      tr{
-        &.impar{
+
+    tbody {
+      tr {
+        &.impar {
           background: map_get($mat-blue, 50);
         }
-        td{
+
+        td {
           padding: 10px;
-          // &:nth-child(1), &:nth-child(4), &:nth-child(5), &:nth-child(6){
-            text-align: center;
-          // }
-          span{
+          text-align: center;
+
+          span {
             visibility: hidden;
           }
-          i{
+
+          i {
             color: map_get($mat-blue, 600);
             cursor: pointer;
           }
-          @media (max-width: 600px) {
-            &:nth-child(1){ display: none; }
-            &:nth-child(2){ width: 30%; }
-            &:nth-child(3){ display: none; }
-            &:nth-child(4){ width: 10%; }
-            &:nth-child(5){ display: none; }
-            &:nth-child(6){ width: 5%; }
 
-            span{
+          @media (max-width: 600px) {
+            &:nth-child(1) {
+              display: none;
+            }
+
+            &:nth-child(2) {
+              width: 30%;
+            }
+
+            &:nth-child(3) {
+              display: none;
+            }
+
+            &:nth-child(4) {
+              width: 10%;
+            }
+
+            &:nth-child(5) {
+              display: none;
+            }
+
+            &:nth-child(6) {
+              width: 5%;
+            }
+
+            span {
               visibility: visible;
             }
           }
