@@ -18,6 +18,19 @@ mat-form-field {
   display: block;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.xs-hide {
+  @media (max-width: 600px) {
+    & {
+      display: none;
+    }
+  }
+}
+
 header {
   width: 100%;
   height: 80px;
@@ -96,6 +109,8 @@ header {
 
 .contenedor {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (max-width: 600px) {
     & {
@@ -107,10 +122,10 @@ header {
     &>div {
       color: #727272;
       display: inline-block;
-      min-width: 300px;
+      min-width: 280px;
       font-size: 20px;
       font-weight: 500;
-      border-bottom: 1px solid #727272;
+      border-bottom: 1.5px solid #727272;
       cursor: pointer;
       padding-left: 10px;
 
@@ -122,8 +137,8 @@ header {
       }
 
       &.on {
-        color: map_get($mat-blue, 900);
-        border-bottom: 1px solid map_get($mat-blue, 900);
+        color: map_get($mat-blue, 600);
+        border-bottom: 1.5px solid map_get($mat-blue, 600);
         font-weight: 700;
       }
     }
@@ -131,7 +146,9 @@ header {
 
   .tab {
     display: none;
-    &.on{
+    padding-top: 30px;
+
+    &.on {
       display: block;
     }
   }
@@ -141,12 +158,15 @@ header {
     font-size: 18px;
     font-weight: 500;
     margin: 5px 0px;
+    display: inline-block;
+    margin-right: 20px;
 
     span {
-      background: map_get($mat-blue, 800);
+      background: map_get($mat-blue, 600);
       color: #fff;
       padding: 5px;
       border-radius: 50%;
+      margin-left: 5px;
     }
   }
 
@@ -156,6 +176,7 @@ header {
     border-collapse: collapse;
     width: 100%;
     border: 1px solid map_get($mat-blue, 800);
+    text-align: center;
 
     thead {
       background: map_get($mat-blue, 600);
@@ -164,55 +185,7 @@ header {
       th {
         padding: 10px;
 
-        &:nth-child(1) {
-          width: 5%;
-        }
-
-        &:nth-child(2) {
-          width: 30%;
-        }
-
-        &:nth-child(3) {
-          width: 30%;
-        }
-
-        &:nth-child(4) {
-          width: 10%;
-        }
-
-        &:nth-child(5) {
-          width: 20%;
-        }
-
-        &:nth-child(6) {
-          width: 5%;
-        }
-
-        @media (max-width: 600px) {
-          &:nth-child(1) {
-            display: none;
-          }
-
-          &:nth-child(2) {
-            width: 30%;
-          }
-
-          &:nth-child(3) {
-            display: none;
-          }
-
-          &:nth-child(4) {
-            width: 10%;
-          }
-
-          &:nth-child(5) {
-            display: none;
-          }
-
-          &:nth-child(6) {
-            width: 5%;
-          }
-        }
+        @media (max-width: 600px) {}
       }
     }
 
@@ -224,7 +197,11 @@ header {
 
         td {
           padding: 10px;
-          text-align: center;
+
+          &:nth-child(2),
+          &:nth-child(3) {
+            text-align: left;
+          }
 
           span {
             visibility: hidden;
@@ -236,29 +213,7 @@ header {
           }
 
           @media (max-width: 600px) {
-            &:nth-child(1) {
-              display: none;
-            }
 
-            &:nth-child(2) {
-              width: 30%;
-            }
-
-            &:nth-child(3) {
-              display: none;
-            }
-
-            &:nth-child(4) {
-              width: 10%;
-            }
-
-            &:nth-child(5) {
-              display: none;
-            }
-
-            &:nth-child(6) {
-              width: 5%;
-            }
 
             span {
               visibility: visible;

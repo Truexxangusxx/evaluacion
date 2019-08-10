@@ -1,9 +1,11 @@
 <header>
-  <div class=izquierda>
-    <h3>Intercorp <i class="fa fa-copyright"></i> Test</h3>
-  </div>
-  <div class="derecha">
-    <i class="fa fa-plus-circle" (click)="showModal()"></i>
+  <div class="container">
+    <div class=izquierda>
+      <h3>Intercorp <i class="fa fa-copyright"></i> Test</h3>
+    </div>
+    <div class="derecha">
+      <i class="fa fa-plus-circle" (click)="showModal()"></i>
+    </div>
   </div>
 </header>
 
@@ -42,11 +44,6 @@
     </div>
   </div>
 
-  <br>
-  <br>
-  <br>
-
-
   <div [ngClass]="tab1? 'tab on':'tab'">
 
     <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
@@ -54,20 +51,20 @@
 
     <table>
       <thead>
-        <th>No.</th>
+        <th class="xs-hide">No.</th>
         <th>Nombre</th>
-        <th>Apellido</th>
+        <th class="xs-hide">Apellido</th>
         <th>Edad</th>
-        <th>Fecha Nacimiento</th>
+        <th class="xs-hide">Fecha Nacimiento</th>
         <th><i class="fa fa-trash"></i></th>
       </thead>
       <tbody>
         <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
-          <td>{{i+1}}</td>
+          <td class="xs-hide">{{i+1}}</td>
           <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
-          <td>{{persona.data().apellido}}</td>
+          <td class="xs-hide">{{persona.data().apellido}}</td>
           <td>{{persona.data().edad}}</td>
-          <td>{{persona.data().fecha}}</td>
+          <td class="xs-hide">{{persona.data().fecha}}</td>
           <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
         </tr>
       </tbody>
@@ -76,20 +73,20 @@
   <div [ngClass]="tab2? 'tab on':'tab'">
     <table>
       <thead>
-        <th>No.</th>
+        <th class="xs-hide">No.</th>
         <th>Nombre</th>
-        <th>Apellido</th>
+        <th class="xs-hide">Apellido</th>
         <th>Edad</th>
-        <th>Fecha Nacimiento</th>
+        <th class="xs-hide">Fecha Nacimiento</th>
         <th><i class="fa fa-trash"></i></th>
       </thead>
       <tbody>
         <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
-          <td>{{i+1}}</td>
+          <td class="xs-hide">{{i+1}}</td>
           <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
-          <td>{{persona.data().apellido}}</td>
+          <td class="xs-hide">{{persona.data().apellido}}</td>
           <td>{{persona.data().edad}}</td>
-          <td>{{persona.data().fecha}}</td>
+          <td class="xs-hide">{{persona.data().fecha}}</td>
           <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
         </tr>
       </tbody>
