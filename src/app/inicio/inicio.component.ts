@@ -15,7 +15,9 @@ export class InicioComponent implements OnInit {
   items: Observable<any[]>;
   personas: any = [];
   persona: any = {};
-  displayedColumns: string[] = ['nombre', 'apellido', 'edad', 'fecha'];
+  promedio: number;
+  desviacion: number;
+
   constructor(public db: AngularFirestore, private datePipe: DatePipe) {
     this.items = db.collection('personas').valueChanges();
 
@@ -33,8 +35,23 @@ export class InicioComponent implements OnInit {
 
   getPersonas = () => {
     this.db.collection('personas', ref => ref.orderBy('registro')).get().subscribe(res => {
-      console.log(res.docs);
       this.personas = res.docs;
+
+      let sum = 0;
+      this.personas.forEach(element => {
+        sum += Number(element.data().edad);
+      });
+      this.promedio = sum / this.personas.length;
+
+      let sumDistancia = 0;
+      this.personas.forEach(element => {
+        let distancia = this.promedio - Number(element.data().edad);
+        distancia < 0 ? distancia = distancia * -1 : distancia = distancia;
+        sumDistancia += distancia ** 2;
+      });
+
+      this.desviacion = Math.sqrt(sumDistancia / this.personas.length);
+
     });
   }
 

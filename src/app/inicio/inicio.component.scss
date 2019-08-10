@@ -14,6 +14,10 @@ $mat-blue: (50: #e3f2fd,
   A700: #2962ff,
 );
 
+mat-form-field {
+  display: block;
+}
+
 header {
   width: 100%;
   height: 80px;
@@ -88,6 +92,66 @@ header {
 }
 
 
-mat-form-field {
-  display: block;
+.contenedor{
+  padding: 20px;
+  table{
+    border-radius: 5px;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid map_get($mat-blue, 800);
+    thead{
+      background: map_get($mat-blue, 600);
+      color:#fff;
+      th{
+        padding: 10px;
+        &:nth-child(1){ width: 5%; }
+        &:nth-child(2){ width: 30%; }
+        &:nth-child(3){ width: 30%; }
+        &:nth-child(4){ width: 10%; }
+        &:nth-child(5){ width: 20%; }
+        &:nth-child(6){ width: 5%; }
+        @media (max-width: 600px) {
+          &:nth-child(1){ display: none; }
+          &:nth-child(2){ width: 30%; }
+          &:nth-child(3){ display: none; }
+          &:nth-child(4){ width: 10%; }
+          &:nth-child(5){ display: none; }
+          &:nth-child(6){ width: 5%; }
+        }
+      }
+    }
+    tbody{
+      tr{
+        &.impar{
+          background: map_get($mat-blue, 50);
+        }
+        td{
+          padding: 10px;
+          // &:nth-child(1), &:nth-child(4), &:nth-child(5), &:nth-child(6){
+            text-align: center;
+          // }
+          span{
+            visibility: hidden;
+          }
+          i{
+            color: map_get($mat-blue, 600);
+            cursor: pointer;
+          }
+          @media (max-width: 600px) {
+            &:nth-child(1){ display: none; }
+            &:nth-child(2){ width: 30%; }
+            &:nth-child(3){ display: none; }
+            &:nth-child(4){ width: 10%; }
+            &:nth-child(5){ display: none; }
+            &:nth-child(6){ width: 5%; }
+
+            span{
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

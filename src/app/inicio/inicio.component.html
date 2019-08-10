@@ -8,10 +8,6 @@
 </header>
 
 
-
-<h1>{{persona.fecha}}</h1>
-
-
 <div class="modal off">
   <div class="fondo" (click)="closeModal()"></div>
   <div class="contenido">
@@ -22,7 +18,7 @@
       <input matInput placeholder="Apellido" [(ngModel)]="persona.apellido">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Edad" [(ngModel)]="persona.edad">
+      <input matInput placeholder="Edad" [(ngModel)]="persona.edad" type="number">
     </mat-form-field>
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="persona.fecha">
@@ -34,9 +30,30 @@
   </div>
 </div>
 
+<div class="contenedor">
+
+  <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
+  <h1> Desviacion estandar: <span>{{desviacion | number: '1.0-0'}}</span></h1>
 
 
-<ol>
-  <li *ngFor="let persona of  personas">{{persona.id}}---->{{persona.data().nombre}} -------- <button mat-raised-button
-      (click)="delPersona(persona.id)">eliminar</button> </li>
-</ol>
+  <table>
+    <thead>
+      <th>No.</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Edad</th>
+      <th>Fecha Nacimiento</th>
+      <th><i class="fa fa-trash"></i></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
+        <td>{{i+1}}</td>
+        <td>{{persona.data().nombre}} <span>{{persona.data().apellido}}</span> </td>
+        <td>{{persona.data().apellido}}</td>
+        <td>{{persona.data().edad}}</td>
+        <td>{{persona.data().fecha}}</td>
+        <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
