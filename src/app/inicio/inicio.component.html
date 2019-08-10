@@ -13,6 +13,7 @@
 <div class="modal off">
   <div class="fondo" (click)="closeModal()"></div>
   <div class="contenido">
+    <i class="fa fa-close" (click)="closeModal()"></i>
     <mat-form-field>
       <input matInput placeholder="Nombre" [(ngModel)]="persona.nombre">
     </mat-form-field>

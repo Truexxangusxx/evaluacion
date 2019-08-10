@@ -59,19 +59,26 @@ export class InicioComponent implements OnInit {
 
   addPersona = () => {
 
-    this.db.collection('personas').add({
-      nombre: this.persona.nombre,
-      edad: this.persona.edad,
-      apellido: this.persona.apellido,
-      fecha: this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy'),
-      registro: new Date()
-    }).then(res => {
-      this.getPersonas();
-      $('.modal').addClass('off');
-      this.persona = {};
-    }).catch(err => {
-      console.error(err);
-    });
+    console.log();
+
+    if (this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy') !== null) {
+      this.db.collection('personas').add({
+        nombre: this.persona.nombre,
+        edad: this.persona.edad,
+        apellido: this.persona.apellido,
+        fecha: this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy'),
+        registro: new Date()
+      }).then(res => {
+        this.getPersonas();
+        $('.modal').addClass('off');
+        this.persona = {};
+      }).catch(err => {
+        console.error(err);
+      });
+    } else {
+      console.error('errorrrrr');
+    }
+
   }
 
 
