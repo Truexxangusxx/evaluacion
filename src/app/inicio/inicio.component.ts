@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { ErrorComponent } from '../components/error/error.component';
 
 declare var $: any;
 
@@ -12,6 +13,8 @@ declare var $: any;
 })
 export class InicioComponent implements OnInit {
 
+  @ViewChild(ErrorComponent) errorComp: ErrorComponent;
+
   items: Observable<any[]>;
   personas: any = [];
   persona: any = {};
@@ -19,6 +22,7 @@ export class InicioComponent implements OnInit {
   desviacion: number;
   tab1 = true;
   tab2 = false;
+  error = '';
 
   constructor(public db: AngularFirestore, private datePipe: DatePipe) {
     this.items = db.collection('personas').valueChanges();
@@ -26,7 +30,6 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.getPersonas();
 
     // this.items.subscribe(res => {
@@ -76,7 +79,8 @@ export class InicioComponent implements OnInit {
         console.error(err);
       });
     } else {
-      console.error('errorrrrr');
+      this.error = 'No es una fecha valida';
+      this.errorComp.mostrar();
     }
 
   }

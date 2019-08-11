@@ -9,6 +9,7 @@ import {environment} from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ComponentsModule} from './components/components.module';
 
 
 
@@ -47,6 +48,7 @@ export const MY_FORMATS = {
     AngularFirestoreModule,
     FormsModule,
     BrowserAnimationsModule,
+    ComponentsModule,
 
     MatDatepickerModule, MatFormFieldModule,  MatDatepickerModule,
     MatNativeDateModule, MatInputModule, MatButtonModule
