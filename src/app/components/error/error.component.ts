@@ -9,6 +9,7 @@ declare var $: any;
 export class ErrorComponent implements OnInit {
 
   @Input() msg = '';
+  time: any;
 
   constructor() { }
 
@@ -21,12 +22,14 @@ export class ErrorComponent implements OnInit {
 
   mostrar() {
     $('.error').fadeIn('slow');
-    setTimeout(() => {
+    clearTimeout(this.time);
+    this.time = setTimeout(() => {
       $('.error').fadeOut('slow');
     }, 5000);
   }
 
   ocultar() {
+    clearTimeout(this.time);
     $('.error').fadeOut('slow');
   }
 

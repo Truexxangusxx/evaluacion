@@ -23,6 +23,7 @@ export class InicioComponent implements OnInit {
   tab1 = true;
   tab2 = false;
   error = '';
+  idEliminar: any;
 
   constructor(public db: AngularFirestore, private datePipe: DatePipe) {
     this.items = db.collection('personas').valueChanges();
@@ -61,27 +62,40 @@ export class InicioComponent implements OnInit {
   }
 
   addPersona = () => {
+    $('mat-form-field').removeClass('mat-form-field-invalid');
+    let vacio = false;
+    $('mat-form-field').each((i, item) => {
+      if ($(item).find('input').val() === '') {
+        $(item).addClass('mat-form-field-invalid');
+        vacio = true;
+      }
+    });
 
-    console.log();
-
-    if (this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy') !== null) {
-      this.db.collection('personas').add({
-        nombre: this.persona.nombre,
-        edad: this.persona.edad,
-        apellido: this.persona.apellido,
-        fecha: this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy'),
-        registro: new Date()
-      }).then(res => {
-        this.getPersonas();
-        $('.modal').addClass('off');
-        this.persona = {};
-      }).catch(err => {
-        console.error(err);
-      });
-    } else {
-      this.error = 'No es una fecha valida';
+    if (vacio) {
+      this.error = 'Los campos marcados son obligatorios';
       this.errorComp.mostrar();
+    } else {
+      if (this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy') !== null) {
+        this.db.collection('personas').add({
+          nombre: this.persona.nombre,
+          edad: this.persona.edad,
+          apellido: this.persona.apellido,
+          fecha: this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy'),
+          registro: new Date()
+        }).then(res => {
+          this.getPersonas();
+          $('.modal').addClass('off');
+          this.persona = {};
+        }).catch(err => {
+          console.error(err);
+        });
+      } else {
+        this.error = 'No es una fecha valida';
+        this.errorComp.mostrar();
+      }
     }
+
+
 
   }
 
@@ -96,10 +110,21 @@ export class InicioComponent implements OnInit {
   }
 
   closeModal() {
-    $('.modal').addClass('off');
+    $('.modal#registro').addClass('off');
   }
   showModal() {
-    $('.modal').removeClass('off');
+    $('.modal#registro').removeClass('off');
+  }
+
+  closeConfirmar() {
+    $('.modal#confirmar').addClass('off');
+  }
+  showConfirmar(id) {
+    $('.modal#confirmar').removeClass('off');
+    this.idEliminar = id;
+  }
+  confirmar() {
+    this.delPersona(this.idEliminar);
   }
 
   selectTab1 = () => {

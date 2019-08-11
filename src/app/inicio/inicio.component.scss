@@ -87,6 +87,8 @@ header {
 
   .fondo {
     position: fixed;
+    top: 0px;
+    left: 0px;
     background: rgba(0, 0, 0, 0.32);
     z-index: 3;
     width: 100%;
@@ -110,12 +112,19 @@ header {
     }
 
     i.fa-close {
+      color: #212121;
       position: absolute;
       right: 10px;
       top: 10px;
       font-size: 18px;
       z-index: 7;
       cursor: pointer;
+    }
+    button{
+      margin-right: 15px;
+    }
+    p{
+      color: #212121;
     }
   }
 }
@@ -213,6 +222,7 @@ header {
         }
 
         td {
+          color: #212121;
           padding: 10px;
 
           &:nth-child(2),
