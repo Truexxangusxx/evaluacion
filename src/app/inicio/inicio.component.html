@@ -85,6 +85,10 @@
     </table>
   </div>
   <div [ngClass]="tab2? 'tab on':'tab'">
+
+      <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
+      <h1> Desviacion estandar: <span>{{desviacion | number: '1.0-0'}}</span></h1>
+
     <table>
       <thead>
         <th class="xs-hide">No.</th>
@@ -92,8 +96,7 @@
         <th class="xs-hide">Apellido</th>
         <th>Edad</th>
         <th class="xs-hide">Fecha Nacimiento</th>
-        <th>Muerte</th>
-        <th><i class="fa fa-trash"></i></th>
+        <th>Proyección</th>
       </thead>
       <tbody>
         <tr *ngFor="let persona of  personas; let i = index" [ngClass]="i%2===0?'':'impar'">
@@ -103,7 +106,6 @@
           <td>{{persona.data().edad}}</td>
           <td class="xs-hide">{{persona.data().fecha}}</td>
           <td>{{persona.muerte | number: '1.0-0'}}</td>
-          <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
         </tr>
       </tbody>
     </table>

@@ -62,6 +62,13 @@ header {
 
     i {
       cursor: pointer;
+      font-size: 35px;
+
+      @media (max-width: 600px) {
+        & {
+          font-size: 30px;
+        }
+      }
     }
   }
 
@@ -120,10 +127,12 @@ header {
       z-index: 7;
       cursor: pointer;
     }
-    button{
+
+    button {
       margin-right: 15px;
     }
-    p{
+
+    p {
       color: #212121;
     }
   }
@@ -187,6 +196,12 @@ header {
     display: inline-block;
     margin-right: 20px;
 
+    @media (max-width: 600px) {
+      & {
+        font-size: 15px;
+      }
+    }
+
     span {
       background: map_get($mat-blue, 600);
       color: #fff;
@@ -211,7 +226,10 @@ header {
       th {
         padding: 10px;
 
-        @media (max-width: 600px) {}
+        &:nth-child(2),
+        &:nth-child(3) {
+          text-align: left;
+        }
       }
     }
 
@@ -240,8 +258,6 @@ header {
           }
 
           @media (max-width: 600px) {
-
-
             span {
               visibility: visible;
             }
