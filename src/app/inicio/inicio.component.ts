@@ -96,7 +96,7 @@ export class InicioComponent implements OnInit {
     } else {
       if (this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy') !== null) {
         this.loading = true;
-        $('.modal').addClass('off');
+        this.closeModal()
         this.db.collection('personas').add({
           nombre: this.persona.nombre,
           edad: this.persona.edad,
@@ -124,7 +124,7 @@ export class InicioComponent implements OnInit {
 
   delPersona = (id) => {
     this.loading = true;
-    $('.modal').addClass('off');
+    this.closeConfirmar();
     this.db.collection('personas').doc(id).delete().then(res => {
       this.getPersonas();
       this.mensaje.mostrar('Registro eliminado correctamente');
@@ -135,16 +135,20 @@ export class InicioComponent implements OnInit {
   }
 
   closeModal() {
+    $('body').removeClass('noscroll');
     $('.modal#registro').addClass('off');
   }
   showModal() {
+    $('body').addClass('noscroll');
     $('.modal#registro').removeClass('off');
   }
 
   closeConfirmar() {
+    $('body').removeClass('noscroll');
     $('.modal#confirmar').addClass('off');
   }
   showConfirmar(id) {
+    $('body').addClass('noscroll');
     $('.modal#confirmar').removeClass('off');
     this.idEliminar = id;
   }
