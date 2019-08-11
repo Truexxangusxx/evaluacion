@@ -92,6 +92,7 @@
         <th class="xs-hide">Apellido</th>
         <th>Edad</th>
         <th class="xs-hide">Fecha Nacimiento</th>
+        <th>Muerte</th>
         <th><i class="fa fa-trash"></i></th>
       </thead>
       <tbody>
@@ -101,6 +102,7 @@
           <td class="xs-hide">{{persona.data().apellido}}</td>
           <td>{{persona.data().edad}}</td>
           <td class="xs-hide">{{persona.data().fecha}}</td>
+          <td>{{persona.muerte | number: '1.0-0'}}</td>
           <td><i class="fa fa-trash" (click)="delPersona(persona.id)"></i></td>
         </tr>
       </tbody>
@@ -113,3 +115,4 @@
 
 
 <app-error #errorComp [msg]="error"></app-error>
+<app-mensaje #mensaje></app-mensaje>

@@ -1,0 +1,29 @@
+
+.mensaje {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  min-width: 250px;
+  padding: 10px 35px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #0d47a1;
+  background: #bbdefb;
+  color: #0d47a1;
+  font-weight: 500;
+  min-height: 40px;
+  display: none;
+  z-index: 10;
+
+  @media (max-width: 600px) {
+    & {
+      left: 10px;
+    }
+  }
+
+  i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+}

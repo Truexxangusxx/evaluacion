@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { ErrorComponent } from '../components/error/error.component';
-// import {LoadingComponent} from '../components/loading/loading.component';
+import { MensajeComponent } from '../components/mensaje/mensaje.component';
 
 declare var $: any;
 
@@ -15,7 +15,7 @@ declare var $: any;
 export class InicioComponent implements OnInit {
 
   @ViewChild(ErrorComponent) errorComp: ErrorComponent;
-  // @ViewChild(LoadingComponent) loading: LoadingComponent;
+  @ViewChild(MensajeComponent) mensaje: MensajeComponent;
 
   items: Observable<any[]>;
   personas: any = [];
@@ -52,9 +52,26 @@ export class InicioComponent implements OnInit {
         let distancia = this.promedio - Number(element.data().edad);
         distancia < 0 ? distancia = distancia * -1 : distancia = distancia;
         sumDistancia += distancia ** 2;
+
+        element.distancia = distancia;
+
       });
 
       this.desviacion = Math.sqrt(sumDistancia / this.personas.length);
+
+      this.personas.forEach(element => {
+        let muerte = 0;
+        const promDesv = (element.distancia + this.desviacion) / 2;
+        if (element.edad > this.promedio) {
+          muerte = this.promedio + this.desviacion;
+        } else {
+          muerte = Number(element.data().edad) + promDesv;
+        }
+        element.muerte = muerte;
+
+
+      });
+
       this.loading = false;
     }, err => {
       this.loading = false;
@@ -89,6 +106,7 @@ export class InicioComponent implements OnInit {
         }).then(res => {
           this.getPersonas();
           this.persona = {};
+          this.mensaje.mostrar('Registro agregado correctamente');
         }).catch(err => {
           console.error(err);
           this.loading = false;
@@ -109,6 +127,7 @@ export class InicioComponent implements OnInit {
     $('.modal').addClass('off');
     this.db.collection('personas').doc(id).delete().then(res => {
       this.getPersonas();
+      this.mensaje.mostrar('Registro eliminado correctamente');
     }).catch(err => {
       console.error(err);
       this.loading = false;
