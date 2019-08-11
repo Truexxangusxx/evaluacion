@@ -8,6 +8,6 @@ import { LoadingComponent } from './loading/loading.component';
   imports: [
     CommonModule
   ],
-  exports: [ErrorComponent]
+  exports: [ErrorComponent, LoadingComponent]
 })
 export class ComponentsModule { }

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { ErrorComponent } from '../components/error/error.component';
+// import {LoadingComponent} from '../components/loading/loading.component';
 
 declare var $: any;
 
@@ -14,6 +15,7 @@ declare var $: any;
 export class InicioComponent implements OnInit {
 
   @ViewChild(ErrorComponent) errorComp: ErrorComponent;
+  // @ViewChild(LoadingComponent) loading: LoadingComponent;
 
   items: Observable<any[]>;
   personas: any = [];
@@ -24,6 +26,7 @@ export class InicioComponent implements OnInit {
   tab2 = false;
   error = '';
   idEliminar: any;
+  loading = true;
 
   constructor(public db: AngularFirestore, private datePipe: DatePipe) {
     this.items = db.collection('personas').valueChanges();
@@ -32,11 +35,6 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.getPersonas();
-
-    // this.items.subscribe(res => {
-    //   this.personas = res;
-    // });
-
   }
 
   getPersonas = () => {
@@ -57,11 +55,15 @@ export class InicioComponent implements OnInit {
       });
 
       this.desviacion = Math.sqrt(sumDistancia / this.personas.length);
-
+      this.loading = false;
+    }, err => {
+      this.loading = false;
+      console.log(err.message);
     });
   }
 
   addPersona = () => {
+
     $('mat-form-field').removeClass('mat-form-field-invalid');
     let vacio = false;
     $('mat-form-field').each((i, item) => {
@@ -76,6 +78,8 @@ export class InicioComponent implements OnInit {
       this.errorComp.mostrar();
     } else {
       if (this.datePipe.transform(this.persona.fecha, 'dd/MM/yyyy') !== null) {
+        this.loading = true;
+        $('.modal').addClass('off');
         this.db.collection('personas').add({
           nombre: this.persona.nombre,
           edad: this.persona.edad,
@@ -84,10 +88,10 @@ export class InicioComponent implements OnInit {
           registro: new Date()
         }).then(res => {
           this.getPersonas();
-          $('.modal').addClass('off');
           this.persona = {};
         }).catch(err => {
           console.error(err);
+          this.loading = false;
         });
       } else {
         this.error = 'No es una fecha valida';
@@ -101,11 +105,13 @@ export class InicioComponent implements OnInit {
 
 
   delPersona = (id) => {
+    this.loading = true;
+    $('.modal').addClass('off');
     this.db.collection('personas').doc(id).delete().then(res => {
       this.getPersonas();
-      $('.modal').addClass('off');
     }).catch(err => {
       console.error(err);
+      this.loading = false;
     });
   }
 

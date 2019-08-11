@@ -56,7 +56,9 @@
     </div>
   </div>
 
-  <div [ngClass]="tab1? 'tab on':'tab'">
+  <app-loading #loading *ngIf="loading"></app-loading>
+  <div [ngClass]="tab1? 'tab on':'tab'" *ngIf="!loading">
+
 
     <h1> Edad Media: <span>{{promedio | number: '1.0-0'}}</span> </h1>
     <h1> Desviacion estandar: <span>{{desviacion | number: '1.0-0'}}</span></h1>

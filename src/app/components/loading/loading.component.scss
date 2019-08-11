@@ -1,0 +1,11 @@
+.loading{
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 40px;
+  @media (max-width: 600px) {
+    & {
+      padding-top: 0px;
+    }
+  }
+}
